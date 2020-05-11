@@ -37,7 +37,7 @@
 					const circ = document.getElementsByTagName('circle')[0];
 					if (e) {
 						// circ.setAttribute('cx', Math.cos(e.alpha / 360) - Math.sin(e.gamma / 360));
-						circ.setAttribute('cy', Math.sin(e.beta / 360));
+						circ.setAttribute('cy', Math.sin(e.beta * Math.PI / 360));
 					};
 				});
 				navigator.geolocation.watchPosition(e => {
