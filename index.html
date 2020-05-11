@@ -5,8 +5,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>センサー値を表示</title>
 		<style>
-			html {overflow: hidden;}
-			body {margin: 0;}
+			body {
+				margin: 0;
+				overflow: hidden;
+			}
 			p {
 				display: block;
 				margin: 0;
@@ -173,15 +175,15 @@
 					fail();
 				};
 			};
-			// if (window.DeviceMotionEvent && DeviceMotionEvent.requestPermission && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) {
-			// 	if (typeof DeviceMotionEvent.requestPermission === 'function' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-					// document.getElementById('permbtn').addEventListener('click', rp);
-			// 	} else {
+			if (window.DeviceMotionEvent && DeviceMotionEvent.requestPermission && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) {
+				if (typeof DeviceMotionEvent.requestPermission === 'function' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+					document.getElementById('permbtn').addEventListener('click', rp);
+				} else {
 					succ();
-			// 	};
-			// } else {
-			// 	document.getElementsByTagName('main')[0].textContent = 'ごめんwwそもそもこのスマホ対応してないわ。ってかこれ本当にスマホ？';
-			// };
+				};
+			} else {
+				document.getElementsByTagName('main')[0].textContent = 'ごめんwwそもそもこのスマホ対応してないわ。ってかこれ本当にスマホ？';
+			};
 		</script>
 	</body>
 </html>
