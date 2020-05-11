@@ -238,7 +238,7 @@
 				if (typeof DeviceMotionEvent.requestPermission === 'function' && typeof DeviceOrientationEvent.requestPermission === 'function') {
 					document.getElementById('permbtn').addEventListener('click', rp);
 				} else {
-					succ();
+					succ()
 				};
 			} else {
 				document.getElementsByTagName('main')[0].textContent = 'ごめんwwそもそもこのスマホ対応してないわ。ってかこれ本当にスマホ？';
