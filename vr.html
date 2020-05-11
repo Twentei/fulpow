@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>センサー値を表示</title>
+		<style>
+			body {
+				margin: 0;
+				overflow: scroll;
+			}
+			p {
+				display: block;
+				margin: 0;
+				white-space: nowrap;
+			}
+			#output {
+				-webkit-display: none;
+				-moz-display: none;
+				-ms-display: none;
+				-o-display: none;
+				display: none;
+				color: #0f0;
+				font-family: monospace;
+			}
+			.fz0 {text-indent: 0rem;}
+			.fz2 {text-indent: 2rem;}
+			.fz4 {text-indent: 4rem;}
+			.fz6 {text-indent: 6rem;}
+			.fz8 {text-indent: 8rem;}
+		</style>
+	</head>
+	<body>
+		<main>
+			<button id="permbtn">あなたのスマホのフルパワーを今すぐ確認！</button>
+			<canvas id="output"></canvas>
+		</main>
+		<script>
+			'use strict';
+			const fail = () => document.getElementById('permbtn').textContent = 'ごめん無理だった…。';
+			const succ = () => {
+				document.getElementById('permbtn').style.display = 'none';
+				document.getElementById('output').style.display = 'block';
+				document.getElementsByTagName('body')[0].style.backgroundColor = 'black';
+				window.addEventListener('devicemotion', e => {
+				});
+				window.addEventListener('deviceorientation', e => {
+				});
+				navigator.geolocation.watchPosition(e => {
+				});
+				window.addEventListener('orientationchange', () => {
+				});
+				window.addEventListener('scroll', () => {
+				});
+				window.addEventListener('resize', () => {
+				});
+			};
+
+
+			const rp = () => {
+				try {
+					DeviceMotionEvent.requestPermission().then(mps => {
+						DeviceOrientationEvent.requestPermission().then(ops => {
+							if (mps === 'granted' && ops === 'granted') {
+								succ();
+							} else {
+								fail();
+							};
+						});
+					});
+				} catch {
+					fail();
+				};
+			};
+			if (window.DeviceMotionEvent && DeviceMotionEvent.requestPermission && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) {
+				if (typeof DeviceMotionEvent.requestPermission === 'function' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+					document.getElementById('permbtn').addEventListener('click', rp);
+				} else {
+					succ();
+				};
+			} else {
+				document.getElementsByTagName('main')[0].textContent = 'ごめんwwそもそもこのスマホ対応してないわ。ってかこれ本当にスマホ？';
+			};
+		</script>
+	</body>
+</html>
