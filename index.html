@@ -122,9 +122,6 @@
 		</main>
 		<script>
 			'use strict';
-			BarProp.visible = false;
-			console.log(screen)
-			console.log(visualViewport)
 			const setx = (s, v) => document.getElementById(s).textContent = v == undefined ? 'null' : v;
 			const sett = (s, v) => setx(s, v == undefined ? 'null' : `"${String(v).replace('"', '\"')}"`);
 			const fail = () => document.getElementById('permbtn').textContent = 'ごめん無理だった…。';
