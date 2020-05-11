@@ -45,7 +45,7 @@
 					if (e) {
 						const theta = e.gamma * Math.PI / 180;
 						const r = Math.sin(e.beta * Math.PI / 180);
-						circ.setAttribute('cx', r * Math.cos(theta) - 0.05);
+						circ.setAttribute('cx', r * Math.sin(theta) - 0.05);
 						circ.setAttribute('cy', r * Math.cos(theta) - 0.05);
 					};
 				});
