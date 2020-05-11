@@ -8,7 +8,10 @@
 		<meta name="apple-mobile-web-app-title" content="VR">
 		<title>VR</title>
 		<style>
-			body {margin: 0;}
+			body {
+				margin: 0;
+				overflow: hidden;
+			}
 			#output {
 				-webkit-display: none;
 				-moz-display: none;
@@ -29,13 +32,10 @@
 			'use strict';
 			const fail = () => document.getElementById('permbtn').textContent = 'ごめん無理だった…。';
 			const succ = () => {
-				const out = document.getElementById('output').style;
-				out.display = 'flex';
-				if (out.width < out.height) {
-					out.width = out.height;
-				} else {
-					out.height = out.width;
-				};
+				const out = document.getElementById('output');
+				out.style.display = 'block';
+				out.style.width = screen.width;
+				out.style.height = screen.height;
 				document.getElementById('permbtn').style.display = 'none';
 				document.getElementsByTagName('body')[0].style.backgroundColor = 'black';
 				window.addEventListener('devicemotion', e => {
@@ -44,7 +44,7 @@
 					const circ = document.getElementsByTagName('circle')[0];
 					if (e) {
 						// circ.setAttribute('cx', Math.cos(e.alpha / 360) - Math.sin(e.gamma / 360));
-						circ.setAttribute('cy', Math.sin(e.beta * Math.PI / 360));
+						circ.setAttribute('cy', Math.sin(e.beta * Math.PI / 180) - 0.05);
 					};
 				});
 				navigator.geolocation.watchPosition(e => {
@@ -73,15 +73,15 @@
 					fail();
 				};
 			};
-			if (window.DeviceMotionEvent && DeviceMotionEvent.requestPermission && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) {
-				if (typeof DeviceMotionEvent.requestPermission === 'function' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-					document.getElementById('permbtn').addEventListener('click', rp);
-				} else {
+			// if (window.DeviceMotionEvent && DeviceMotionEvent.requestPermission && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) {
+			// 	if (typeof DeviceMotionEvent.requestPermission === 'function' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+			// 		document.getElementById('permbtn').addEventListener('click', rp);
+			// 	} else {
 					succ();
-				};
-			} else {
-				document.getElementsByTagName('main')[0].textContent = 'ごめんwwそもそもこのスマホ対応してないわ。ってかこれ本当にスマホ？';
-			};
+			// 	};
+			// } else {
+			// 	document.getElementsByTagName('main')[0].textContent = 'ごめんwwそもそもこのスマホ対応してないわ。ってかこれ本当にスマホ？';
+			// };
 		</script>
 	</body>
 </html>
