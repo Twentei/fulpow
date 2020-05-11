@@ -32,8 +32,13 @@
 		<script>
 			'use strict';
 			const setXY = (i, x, y) => {
-				document.getElementsByTagName('circle')[i].setAttribute('cx', x - 0.05);
-				document.getElementsByTagName('circle')[i].setAttribute('cy', y - 0.05);
+				document.getElementsByTagName('circle')[i]
+				.setAttribute('opacity', Math.sign(x) == Math.sign(e.gamma) && Math.sign(y) == Math.sign(e.beta) ? 100 : 0);
+				.setAttribute('cx', Math.sin(e.gamma * Math.PI / x) - 0.05)
+				.setAttribute('cy', Math.sin(e.beta * Math.PI / y) - 0.05)
+			};
+			const setXYs = ary => {
+				ary.forEach((v, i) => setXYs(i, ...v))
 			};
 			const fail = () => document.getElementById('permbtn').textContent = 'ごめん無理だった…。';
 			const succ = () => {
@@ -48,8 +53,10 @@
 				window.addEventListener('deviceorientation', e => {
 					const circ = document.getElementsByTagName('circle');
 					if (e) {
-						setXY(0, Math.sin(e.gamma * Math.PI / 180), Math.sin(e.beta * Math.PI / 180));
-						setXY(1, Math.sin(e.gamma * Math.PI / -180), Math.sin(e.beta * Math.PI / -180));
+						setXYs([
+							[180, 180],
+							[-180, 180]
+						]);
 					};
 				});
 				navigator.geolocation.watchPosition(e => {
