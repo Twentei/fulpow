@@ -141,7 +141,7 @@
 					setx('mo.rot.b', e.rotationRate.beta);
 					setx('mo.rot.g', e.rotationRate.gamma);
 				});
-				window.addEventListener('deviceorientationabsolute', e => {
+				window.addEventListener('deviceorientation', e => {
 					setx('or.abs', e.absolute);
 					setx('or.a', e.alpha);
 					setx('or.b', e.beta);
