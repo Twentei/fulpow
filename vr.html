@@ -36,7 +36,7 @@
 				window.addEventListener('deviceorientation', e => {
 					const circ = document.getElementsByTagName('circle')[0];
 					if (e) {
-						circ.setAttribute('cx', Math.cos(e.alpha / 360) - Math.sin(e.gamma / 360));
+						// circ.setAttribute('cx', Math.cos(e.alpha / 360) - Math.sin(e.gamma / 360));
 						circ.setAttribute('cy', Math.sin(e.beta / 360));
 					};
 				});
