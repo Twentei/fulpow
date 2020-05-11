@@ -7,7 +7,7 @@
 		<style>
 			body {
 				margin: 0;
-				overflow: hidden;
+				overflow: scroll;
 			}
 			p {
 				display: block;
@@ -19,9 +19,7 @@
 				-ms-display: none;
 				-o-display: none;
 				display: none;
-				overflow: scroll;
 				color: #0f0;
-				background-color: #000;
 				font-family: monospace;
 			}
 			.fz0 {text-indent: 0rem;}
@@ -107,6 +105,7 @@
 			const succ = () => {
 				document.getElementById('permbtn').style.display = 'none';
 				document.getElementById('output').style.display = 'block';
+				document.getElementsByTagName('body')[0].style.backgroundColor = 'black';
 				window.addEventListener('devicemotion', e => {
 					setx('mo.i', e.interval);
 					setx('mo.acci.x', e.accelerationIncludingGravity.x);
@@ -180,15 +179,15 @@
 					fail();
 				};
 			};
-			if (window.DeviceMotionEvent && DeviceMotionEvent.requestPermission && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) {
-				if (typeof DeviceMotionEvent.requestPermission === 'function' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-					document.getElementById('permbtn').addEventListener('click', rp);
-				} else {
+			// if (window.DeviceMotionEvent && DeviceMotionEvent.requestPermission && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) {
+			// 	if (typeof DeviceMotionEvent.requestPermission === 'function' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+			// 		document.getElementById('permbtn').addEventListener('click', rp);
+			// 	} else {
 					succ();
-				};
-			} else {
-				document.getElementsByTagName('main')[0].textContent = 'ごめんwwそもそもこのスマホ対応してないわ。ってかこれ本当にスマホ？';
-			};
+			// 	};
+			// } else {
+			// 	document.getElementsByTagName('main')[0].textContent = 'ごめんwwそもそもこのスマホ対応してないわ。ってかこれ本当にスマホ？';
+			// };
 		</script>
 	</body>
 </html>
