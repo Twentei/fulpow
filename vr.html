@@ -2,13 +2,14 @@
 <html lang="ja">
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>センサー値を表示</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="VR">
+		<title>VR</title>
 		<style>
 			body {margin: 0;}
 			#output {
-				width: 100vw;
-				height: 100vh;
 				-webkit-display: none;
 				-moz-display: none;
 				-ms-display: none;
@@ -28,8 +29,13 @@
 			'use strict';
 			const fail = () => document.getElementById('permbtn').textContent = 'ごめん無理だった…。';
 			const succ = () => {
+				/*const out = */document.getElementById('output').style.display = 'flex';
+				// if (outs.innerWidth < outs.height) {
+				// 	outs.height = outs.width;
+				// } else {
+				// 	outs.width = outs.height;
+				// };
 				document.getElementById('permbtn').style.display = 'none';
-				document.getElementById('output').style.display = 'flex';
 				document.getElementsByTagName('body')[0].style.backgroundColor = 'black';
 				window.addEventListener('devicemotion', e => {
 				});
