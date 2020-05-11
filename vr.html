@@ -43,11 +43,8 @@
 				window.addEventListener('deviceorientation', e => {
 					const circ = document.getElementsByTagName('circle')[0];
 					if (e) {
-						const A = e.alpha * Math.PI / 180;
-						const B = e.beta * Math.PI / 180;
-						const G = e.gamma * Math.PI / 180;
-						const X = Math.cos(A) * Math.sin(G);
-						const Y = Math.sin(A) * Math.sin(B);
+						const X = Math.cos(e.beta * Math.PI / 180);
+						const Y = Math.sin(e.gamma * Math.PI / 180);
 						circ.setAttribute('cx', X - Y - 0.05);
 						circ.setAttribute('cy', Y + X - 0.05);
 					};
