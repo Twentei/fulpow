@@ -5,13 +5,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>センサー値を表示</title>
 		<style>
-			html {overflow: scroll;}
+			html {overflow: hidden;}
 			body {margin: 0;}
 			p {
 				display: block;
 				margin: 0;
 			}
 			#output {
+				overflow: scroll;
 				color: #0f0;
 				background-color: #000;
 				font-family: monospace;
@@ -104,7 +105,7 @@
 					setx('mo.acci.x', e.accelerationIncludingGravity.x);
 					setx('mo.acci.y', e.accelerationIncludingGravity.y);
 					setx('mo.acci.z', e.accelerationIncludingGravity.z);
-					sett('mo.acc.x', e.acceleration.x);
+					setx('mo.acc.x', e.acceleration.x);
 					setx('mo.acc.y', e.acceleration.y);
 					setx('mo.acc.z', e.acceleration.z);
 					setx('mo.rot.a', e.rotationRate.alpha);
