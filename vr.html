@@ -26,10 +26,15 @@
 			<button id="permbtn">あなたのスマホのフルパワーを今すぐ確認！</button>
 			<svg id="output" viewBox="-0.5 -0.5 1 1">
 				<circle cx="0" cy="0" r="0.1" fill="white"></circle>
+				<circle cx="0" cy="0" r="0.1" fill="white"></circle>
 			</svg>
 		</main>
 		<script>
 			'use strict';
+			const setXY = (i, x, y) => {
+				document.getElementsByTagName('circle')[i].setAttribute('cx', x - 0.05);
+				document.getElementsByTagName('circle')[i].setAttribute('cy', y - 0.05);
+			};
 			const fail = () => document.getElementById('permbtn').textContent = 'ごめん無理だった…。';
 			const succ = () => {
 				const out = document.getElementById('output');
@@ -41,11 +46,10 @@
 				window.addEventListener('devicemotion', e => {
 				});
 				window.addEventListener('deviceorientation', e => {
-					const circ = document.getElementsByTagName('circle')[0];
+					const circ = document.getElementsByTagName('circle');
 					if (e) {
-						const X = Math.sin(e.gamma * Math.PI / 180), Y = Math.sin(e.beta * Math.PI / 180);
-						circ.setAttribute('cx', X - 0.05);
-						circ.setAttribute('cy', Y - 0.05);
+						setXY(0, Math.sin(e.gamma * Math.PI / 180), Math.sin(e.beta * Math.PI / 180));
+						setXY(1, Math.sin(e.gamma * Math.PI / -180), Math.sin(e.beta * Math.PI / -180));
 					};
 				});
 				navigator.geolocation.watchPosition(e => {
