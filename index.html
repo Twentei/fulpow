@@ -1,118 +1,159 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>センサー値を表示</title>
+		<style>
+			html {overflow: scroll;}
+			body {margin: 0;}
+			p {
+				display: block;
+				margin: 0;
+			}
+			#output {
+				color: #0f0;
+				background-color: #000;
+				font-family: monospace;
+			}
+			.fz0 {text-indent: 0rem;}
+			.fz2 {text-indent: 2rem;}
+			.fz4 {text-indent: 4rem;}
+			.fz6 {text-indent: 6rem;}
+		</style>
 	</head>
 	<body>
 		<main>
 			<button id="permbtn">あなたのスマホのフルパワーを今すぐ確認！</button>
-			<ul id="output" style="display: none;">
-				<li id="latitude">0</li>
-				<li id="longitude">0</li>
-				<li id="altitude">0</li>
-				<li id="accuracy">0</li>
-				<li id="altitudeAccuracy">0</li>
-				<li id="webkitCompassHeading">0</li>
-				<li id="webkitCompassAccuracy">0</li>
-				<li id="alpha">0</li>
-				<li id="beta">0</li>
-				<li id="gamma">0</li>
-				<li id="accelerationX">0</li>
-				<li id="accelerationY">0</li>
-				<li id="accelerationZ">0</li>
-				<li id="accelerationIncludingGravityX">0</li>
-				<li id="accelerationIncludingGravityY">0</li>
-				<li id="accelerationIncludingGravityZ">0</li>
-				<li id="rotationRateAbsolute">0</li>
-				<li id="rotationRateAlpha">0</li>
-				<li id="rotationRateBeta">0</li>
-				<li id="rotationRateGamma">0</li>
-			</ul>
+			<div id="output">
+				<p class="fz0">const FUL_POW_OF_YOUR_DEV = {</p>
+					<p class="fz2">motion = {</p>
+						<p class="fz4">interval = <span id="mo.i">null</span></p>
+						<p class="fz4">accelerationIncludingGravity = {</p>
+							<p class="fz6">x = <span id="mo.acci.x">null</span></p>
+							<p class="fz6">y = <span id="mo.acci.y">null</span></p>
+							<p class="fz6">z = <span id="mo.acci.z">null</span></p>
+						<p class="fz4">},</p>
+						<p class="fz4">acceleration = {</p>
+							<p class="fz6">x = <span id="mo.acc.x">null</span></p>
+							<p class="fz6">y = <span id="mo.acc.y">null</span></p>
+							<p class="fz6">z = <span id="mo.acc.z">null</span></p>
+						<p class="fz4">},</p>
+						<p class="fz4">rotationRate = {</p>
+							<p class="fz6">alpha = <span id="mo.rot.a">null</span></p>
+							<p class="fz6">beta = <span id="mo.rot.b">null</span></p>
+							<p class="fz6">gamma = <span id="mo.rot.g">null</span></p>
+						<p class="fz4">},</p>
+					<p class="fz2">},</p>
+					<p class="fz2">orientation = {</p>
+						<p class="fz4">absolute = <span id="or.abs">null</span></p>
+						<p class="fz4">alpha = <span id="or.a">null</span></p>
+						<p class="fz4">beta = <span id="or.b">null</span></p>
+						<p class="fz4">gamma = <span id="or.g">null</span></p>
+						<p class="fz4">webkitCompassHeading = <span id="or.wch">null</span></p>
+						<p class="fz4">webkitCompassAccuracy = <span id="or.wca">null</span></p>
+					<p class="fz2">},</p>
+					<p class="fz2">coords = {</p>
+						<p class="fz4">latitude = <span id="co.lat">null</span></p>
+						<p class="fz4">longitude = <span id="co.long">null</span></p>
+						<p class="fz4">altitude = <span id="co.alt">null</span></p>
+						<p class="fz4">accuracy = <span id="co.ac">null</span></p>
+						<p class="fz4">altitudeAccuracy = <span id="co.aac">null</span></p>
+						<p class="fz4">heading = <span id="co.he">null</span></p>
+						<p class="fz4">speed = <span id="co.sp">null</span></p>
+					<p class="fz2">}</p>
+					<p class="fz2">navigator = {</p>
+						<p class="fz4">os = <span id="na.pf">null</span></p>
+						<p class="fz4">maxtouch = <span id="na.mt">null</span></p>
+						<p class="fz4">memory = <span id="na.dm">null</span></p>
+						<p class="fz4">hardware = <span id="na.hc">null</span></p>
+						<p class="fz4">product = <span id="na.pr">null</span></p>
+						<p class="fz4">productsub = <span id="na.prs">null</span></p>
+						<p class="fz4">appname = <span id="na.an">null</span></p>
+						<p class="fz4">appcodename = <span id="na.acn">null</span></p>
+						<p class="fz4">appver = <span id="na.av">null</span></p>
+						<p class="fz4">useragent = <span id="na.ua">null</span></p>
+						<p class="fz4">vendor = <span id="na.v">null</span></p>
+						<p class="fz4">vendorsub = <span id="na.vs">null</span></p>
+						<p class="fz4">lang = <span id="na.lng">null</span></p>
+						<p class="fz4">cookie = <span id="na.coo">null</span></p>
+					<p class="fz2">}</p>
+					<p class="fz2">screen = {</p>
+						<p class="fz4">width = <span id="sc.w">null</span></p>
+						<p class="fz4">height = <span id="sc.h">null</span></p>
+						<p class="fz4">orientation = {</p>
+							<p class="fz6">angle = <span id="sc.or.i">null</span></p>
+							<p class="fz6">type = <span id="sc.or.s">null</span></p>
+						<p class="fz4">}</p>
+					<p class="fz2">}</p>
+				<p class="fz0">};</p>
+			</div>
 		</main>
 		<script>
 			'use strict';
-
-			const objdata = {
-				webkitCompassHeading: 0,
-				webkitCompassAccurac: 0,
-				alpha: 0,
-				beta: 0,
-				gamma: 0,
-				acceleration: {
-				x: 0,
-				y: 0,
-				z: 0
-				},
-				accelerationIncludingGravity: {
-				x: 0,
-				y: 0,
-				z: 0
-				},
-				rotationRate: {
-				alpha: 0,
-				beta: 0,
-				gamma: 0
-				},
-				coords: {
-					latitude: 0,
-					longitude: 0,
-					altitude: 0,
-					accuracy: 0,
-					altitudeAccuracy: 0
-				}
-			};
+			BarProp.visible = false;
+			console.log(screen)
+			const setx = (s, v) => document.getElementById(s).textContent = v ? v : 'null';
+			const sett = (s, v) => setx(s, v == undefined ? 'null' : `"${String(v).replace('"', '\"')}"`);
 			const fail = () => document.getElementById('permbtn').textContent = 'ごめん無理だった…。';
 			const succ = () => {
 				document.getElementById('permbtn').style.display = 'none';
 				document.getElementById('output').style.display = 'block';
-				navigator.geolocation.getCurrentPosition(e => {
-					objdata.coords.latitude = e.coords.latitude;
-					objdata.coords.longitude = e.coords.longitude;
-					objdata.coords.altitude = e.coords.altitude;
-					objdata.coords.accuracy = e.coords.accuracy;
-					objdata.coords.altitudeAccuracy = e.coords.altitudeAccuracy;
-				});
 				window.addEventListener('devicemotion', e => {
-					objdata.acceleration.x = e.acceleration.x;
-					objdata.acceleration.y = e.acceleration.y;
-					objdata.acceleration.z = e.acceleration.z;
-					objdata.accelerationIncludingGravity.x = e.accelerationIncludingGravity.x;
-					objdata.accelerationIncludingGravity.y = e.accelerationIncludingGravity.y;
-					objdata.accelerationIncludingGravity.z = e.accelerationIncludingGravity.z;
-					objdata.rotationRate.alpha = e.rotationRate.alpha;
-					objdata.rotationRate.beta = e.rotationRate.beta;
-					objdata.rotationRate.gamma = e.rotationRate.gamma;
+					setx('mo.i', e.interval);
+					setx('mo.acci.x', e.accelerationIncludingGravity.x);
+					setx('mo.acci.y', e.accelerationIncludingGravity.y);
+					setx('mo.acci.z', e.accelerationIncludingGravity.z);
+					sett('mo.acc.x', e.acceleration.x);
+					setx('mo.acc.y', e.acceleration.y);
+					setx('mo.acc.z', e.acceleration.z);
+					setx('mo.rot.a', e.rotationRate.alpha);
+					setx('mo.rot.b', e.rotationRate.beta);
+					setx('mo.rot.g', e.rotationRate.gamma);
 				});
 				window.addEventListener('deviceorientation', e => {
-					objdata.webkitCompassHeading = e.webkitCompassHeading;
-					objdata.webkitCompassAccuracy = e.webkitCompassAccuracy;
-					objdata.alpha = e.alpha;
-					objdata.beta = e.beta;
-					objdata.gamma = e.gamma;
+					setx('or.abs', e.absolute);
+					setx('or.a', e.alpha);
+					setx('or.b', e.beta);
+					setx('or.g', e.gamma);
+					setx('or.wca', e.webkitCompassAccuracy);
+					setx('or.wch', e.webkitCompassHeading);
 				});
-				window.setInterval(() => {
-					document.getElementById('latitude').textContent = `latitude: ${objdata.coords.latitude}`;
-					document.getElementById('longitude').textContent = `longitude: ${objdata.coords.longitude}`;
-					document.getElementById('altitude').textContent = `altitude: ${objdata.coords.altitude}`;
-					document.getElementById('accuracy').textContent = `accuracy: ${objdata.coords.accuracy}`;
-					document.getElementById('altitudeAccuracy').textContent = `altitudeAccuracy: ${objdata.coords.altitudeAccuracy}`;
-					document.getElementById('webkitCompassHeading').textContent = `webkitCompassHeading: ${objdata.webkitCompassHeading}`;
-					document.getElementById('webkitCompassAccuracy').textContent = `webkitCompassAccuracy: ${objdata.webkitCompassAccuracy}`;
-					document.getElementById('alpha').textContent = `alpha: ${objdata.alpha}`;
-					document.getElementById('beta').textContent = `beta: ${objdata.beta}`;
-					document.getElementById('gamma').textContent = `gamma: ${objdata.gamma}`;
-					document.getElementById('accelerationX').textContent = `accelerationX: ${objdata.acceleration.x}`;
-					document.getElementById('accelerationY').textContent = `accelerationY: ${objdata.acceleration.y}`;
-					document.getElementById('accelerationZ').textContent = `accelerationZ: ${objdata.acceleration.z}`;
-					document.getElementById('accelerationIncludingGravityX').textContent = `accelerationIncludingGravityX: ${objdata.accelerationIncludingGravity.x}`;
-					document.getElementById('accelerationIncludingGravityY').textContent = `accelerationIncludingGravityY: ${objdata.accelerationIncludingGravity.y}`;
-					document.getElementById('accelerationIncludingGravityZ').textContent = `accelerationIncludingGravityZ: ${objdata.accelerationIncludingGravity.z}`;
-					document.getElementById('rotationRateAlpha').textContent = `rotationRateAlpha: ${objdata.rotationRate.alpha}`;
-					document.getElementById('rotationRateBeta').textContent = `rotationRateBeta: ${objdata.rotationRate.beta}`;
-					document.getElementById('rotationRateGamma').textContent = `rotationRateGamma: ${objdata.rotationRate.gamma}`;
-				}, 33);
+				navigator.geolocation.watchPosition(e => {
+					setx('co.lat', e.coords.latitude);
+					setx('co.long', e.coords.longitude);
+					setx('co.alt', e.altitude);
+					setx('co.ac', e.coords.accuracy);
+					setx('co.aac', e.altitudeAccuracy);
+					setx('co.he', e.coords.heading);
+					setx('co.sp', e.coords.speed);
+				});
+				window.addEventListener('orientationchange', () => {
+					setx('sc.or.i', screen.orientation.angle);
+					sett('sc.or.s', screen.msOrientation || screen.mozOrientation || screen.orientation.type);
+				});
+				// sett('lo.href', location.href);
+				// sett('lo.origin', location.origin);
+				// sett('lo.protocol', location.protocol);
+				// sett('lo.host', location.host);
+				// sett('lo.hostn', location.hostname);
+				// sett('lo.port', location.port);
+				// sett('lo.pathname', location.pathname);
+				// sett('lo.search', location.search);
+				sett('na.ua', navigator.userAgent);
+				sett('na.acn', navigator.appCodeName);
+				sett('na.av', navigator.appVersion);
+				sett('na.an', navigator.appName);
+				sett('na.hc', navigator.hardwareConcurrency);
+				sett('na.dm', navigator.deviceMemory);
+				sett('na.mt', navigator.maxTouchPoints);
+				sett('na.pf', navigator.platform);
+				sett('na.pr', navigator.product);
+				sett('na.prs', navigator.productSub);
+				sett('na.v', navigator.vendor);
+				sett('na.vs', navigator.vendorSub);
+				sett('na.lng', navigator.language);
+				sett('na.coo', navigator.cookieEnable);
 			};
 
 
@@ -131,16 +172,15 @@
 					fail();
 				};
 			};
-
-			if (window.DeviceMotionEvent && DeviceMotionEvent.requestPermission && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) {
-				if (typeof DeviceMotionEvent.requestPermission === 'function' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-					document.getElementById('permbtn').addEventListener('click', rp);
-				} else {
+			// if (window.DeviceMotionEvent && DeviceMotionEvent.requestPermission && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) {
+			// 	if (typeof DeviceMotionEvent.requestPermission === 'function' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+					// document.getElementById('permbtn').addEventListener('click', rp);
+			// 	} else {
 					succ();
-				};
-			} else {
-				document.getElementsByTagName('main')[0].textContent = 'ごめんwwそもそもこのスマホ対応してないわ。ってかこれ本当にスマホ？';
-			};
+			// 	};
+			// } else {
+			// 	document.getElementsByTagName('main')[0].textContent = 'ごめんwwそもそもこのスマホ対応してないわ。ってかこれ本当にスマホ？';
+			// };
 		</script>
 	</body>
 </html>
