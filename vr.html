@@ -29,12 +29,13 @@
 			'use strict';
 			const fail = () => document.getElementById('permbtn').textContent = 'ごめん無理だった…。';
 			const succ = () => {
-				/*const out = */document.getElementById('output').style.display = 'flex';
-				// if (outs.innerWidth < outs.height) {
-				// 	outs.height = outs.width;
-				// } else {
-				// 	outs.width = outs.height;
-				// };
+				const out = document.getElementById('output').style;
+				out.display = 'flex';
+				if (outs.Width < outs.height) {
+					outs.width = outs.height;
+				} else {
+					outs.height = outs.width;
+				};
 				document.getElementById('permbtn').style.display = 'none';
 				document.getElementsByTagName('body')[0].style.backgroundColor = 'black';
 				window.addEventListener('devicemotion', e => {
