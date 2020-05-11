@@ -43,16 +43,11 @@
 				window.addEventListener('deviceorientation', e => {
 					const circ = document.getElementsByTagName('circle')[0];
 					if (e) {
-						const theta = e.gamma * Math.PI / 180;
-						const r = Math.sin(e.beta * Math.PI / 180);
-						circ.setAttribute('cx', r * Math.sin(theta) - 0.05);
-						circ.setAttribute('cy', r * Math.cos(theta) - 0.05);
+						const X = Math.sin(e.gamma * Math.PI / 180), Y = Math.sin(e.beta * Math.PI / 180);
+						circ.setAttribute('cx', X - 0.05);
+						circ.setAttribute('cy', Y - 0.05);
 					};
 				});
-				// let i = 0;
-				// setInterval(() => {
-				// 	circ.setAttribute('cx', Math.cos(i++ * Math.PI / 180) - Math.sin( * Math.PI / 180));
-				// }, 33);
 				navigator.geolocation.watchPosition(e => {
 				});
 				window.addEventListener('orientationchange', () => {
