@@ -99,7 +99,7 @@
 			'use strict';
 			BarProp.visible = false;
 			console.log(screen)
-			const setx = (s, v) => document.getElementById(s).textContent = v ? v : 'null';
+			const setx = (s, v) => document.getElementById(s).textContent = v == undefined ? 'null' : v;
 			const sett = (s, v) => setx(s, v == undefined ? 'null' : `"${String(v).replace('"', '\"')}"`);
 			const fail = () => document.getElementById('permbtn').textContent = 'ごめん無理だった…。';
 			const succ = () => {
@@ -136,9 +136,20 @@
 					setx('co.sp', e.coords.speed);
 				});
 				window.addEventListener('orientationchange', () => {
-					setx('sc.or.i', screen.orientation.angle);
-					sett('sc.or.s', screen.msOrientation || screen.mozOrientation || screen.orientation.type);
+					let angle = screen && screen.orientation && screen.orientation.angle;
+					if (!angle) {
+						angle = window.orientation;
+					};
+					setx('sc.or.i', angle);
+					sett('sc.or.s', screen.msOrientation || screen.mozOrientation || (screen.orientation || {}).type);
 				});
+					let angle = screen && screen.orientation && screen.orientation.angle;
+					if (angle === undefined) {
+						angle = window.orientation;
+					};
+					console.log(angle)
+					setx('sc.or.i', angle);
+					sett('sc.or.s', screen.msOrientation || screen.mozOrientation || (screen.orientation || {}).type);
 				// sett('lo.href', location.href);
 				// sett('lo.origin', location.origin);
 				// sett('lo.protocol', location.protocol);
