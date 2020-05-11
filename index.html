@@ -26,6 +26,7 @@
 			.fz2 {text-indent: 2rem;}
 			.fz4 {text-indent: 4rem;}
 			.fz6 {text-indent: 6rem;}
+			.fz8 {text-indent: 8rem;}
 		</style>
 	</head>
 	<body>
@@ -71,8 +72,6 @@
 					<p class="fz2">navigator = {</p>
 						<p class="fz4">os = <span id="na.pf">null</span></p>
 						<p class="fz4">maxtouch = <span id="na.mt">null</span></p>
-						<p class="fz4">memory = <span id="na.dm">null</span></p>
-						<p class="fz4">hardware = <span id="na.hc">null</span></p>
 						<p class="fz4">product = <span id="na.pr">null</span></p>
 						<p class="fz4">productsub = <span id="na.prs">null</span></p>
 						<p class="fz4">appname = <span id="na.an">null</span></p>
@@ -85,20 +84,46 @@
 						<p class="fz4">cookie = <span id="na.coo">null</span></p>
 					<p class="fz2">}</p>
 					<p class="fz2">screen = {</p>
-						<p class="fz4">width = <span id="sc.w">null</span></p>
+						<p class="fz4">type = <span id="sc.ty">null</span></p>
+						<p class="fz4">devdepth = <span id="sc.dd">null</span></p>
+						<p class="fz4">pixeldepth = <span id="sc.pd">null</span></p>
+						<p class="fz4">colordepth = <span id="sc.cd">null</span></p>
+						<p class="fz4">[</p>
+							<p class="fz6">{</p>
+								<p class="fz8">x = <span id="sc.ou.x">null</span></p>
+								<p class="fz8">y = <span id="sc.ou.y">null</span></p>
+								<p class="fz8">w = <span id="sc.ou.w">null</span></p>
+								<p class="fz8">h = <span id="sc.ou.h">null</span></p>
+							<p class="fz6">}</p>
+							<p class="fz6">{</p>
+								<p class="fz8">x = <span id="sc.in.x">null</span></p>
+								<p class="fz8">y = <span id="sc.in.y">null</span></p>
+								<p class="fz8">w = <span id="sc.in.w">null</span></p>
+								<p class="fz8">h = <span id="sc.in.h">null</span></p>
+								<p class="fz8">s = <span id="sc.in.s">null</span></p>
+							<p class="fz6">}</p>
+						<p class="fz4">]</p>
 						<p class="fz4">height = <span id="sc.h">null</span></p>
 						<p class="fz4">orientation = {</p>
 							<p class="fz6">angle = <span id="sc.or.i">null</span></p>
 							<p class="fz6">type = <span id="sc.or.s">null</span></p>
 						<p class="fz4">}</p>
 					<p class="fz2">}</p>
-				<p class="fz0">};</p>
+					<p class="fz2">performance = {</p>
+						<p class="fz4">memory = <span id="pf.m">null</span></p>
+						<p class="fz4">hardware = <span id="pf.h">null</span></p>
+						<p class="fz4">totaljsheap = <span id="pf.tj">null</span></p>
+						<p class="fz4">jsheap = <span id="pf.j">null</span></p>
+						<p class="fz4">usedjsheap = <span id="pf.uj">null</span></p>
+					<p class="fz2">}</p>
+				<p class="fz0">}</p>
 			</div>
 		</main>
 		<script>
 			'use strict';
 			BarProp.visible = false;
 			console.log(screen)
+			console.log(visualViewport)
 			const setx = (s, v) => document.getElementById(s).textContent = v == undefined ? 'null' : v;
 			const sett = (s, v) => setx(s, v == undefined ? 'null' : `"${String(v).replace('"', '\"')}"`);
 			const fail = () => document.getElementById('permbtn').textContent = 'ごめん無理だった…。';
@@ -143,35 +168,54 @@
 					setx('sc.or.i', angle);
 					sett('sc.or.s', screen.msOrientation || screen.mozOrientation || (screen.orientation || {}).type);
 				});
-					let angle = screen && screen.orientation && screen.orientation.angle;
-					if (angle === undefined) {
-						angle = window.orientation;
-					};
-					console.log(angle)
-					setx('sc.or.i', angle);
-					sett('sc.or.s', screen.msOrientation || screen.mozOrientation || (screen.orientation || {}).type);
-				// sett('lo.href', location.href);
-				// sett('lo.origin', location.origin);
-				// sett('lo.protocol', location.protocol);
-				// sett('lo.host', location.host);
-				// sett('lo.hostn', location.hostname);
-				// sett('lo.port', location.port);
-				// sett('lo.pathname', location.pathname);
-				// sett('lo.search', location.search);
+				let angle = screen && screen.orientation && screen.orientation.angle;
+				if (!angle) {
+					angle = window.orientation;
+				};
+				window.addEventListener('scroll', () => {
+					setx('sc.in.x', visualViewport.pageLeft);
+					setx('sc.in.y', visualViewport.pageTop);
+				});
+				setx('sc.in.x', visualViewport.pageLeft);
+				setx('sc.in.y', visualViewport.pageTop);
+				window.addEventListener('resize', () => {
+					setx('sc.in.w', visualViewport.width);
+					setx('sc.in.h', visualViewport.height);
+				});
+				setx('sc.in.w', visualViewport.width);
+				setx('sc.in.h', visualViewport.height);
+
+				setx('sc.in.s', visualViewport.scale);
+
+				setx('sc.or.i', angle);
+				sett('sc.or.s', screen.msOrientation || screen.mozOrientation || (screen.orientation || {}).type);
+				setx('sc.dd', window.devicePixelRatio);
+				setx('sc.pd', screen.pixelDepth);
+				setx('sc.cd', screen.colorDepth);
+				sett('sc.ty', styleMedia.type);
+				setx('sc.ou.x', screen.availLeft);
+				setx('sc.ou.y', screen.availTop);
+				setx('sc.ou.w', screen.width);
+				setx('sc.ou.h', screen.height);
+
 				sett('na.ua', navigator.userAgent);
 				sett('na.acn', navigator.appCodeName);
 				sett('na.av', navigator.appVersion);
 				sett('na.an', navigator.appName);
-				sett('na.hc', navigator.hardwareConcurrency);
-				sett('na.dm', navigator.deviceMemory);
-				sett('na.mt', navigator.maxTouchPoints);
 				sett('na.pf', navigator.platform);
 				sett('na.pr', navigator.product);
-				sett('na.prs', navigator.productSub);
+				setx('na.prs', navigator.productSub);
 				sett('na.v', navigator.vendor);
-				sett('na.vs', navigator.vendorSub);
+				setx('na.vs', navigator.vendorSub);
 				sett('na.lng', navigator.language);
-				sett('na.coo', navigator.cookieEnable);
+				setx('na.coo', navigator.cookieEnable);
+				setx('na.mt', navigator.maxTouchPoints);
+
+				setx('pf.m', navigator.deviceMemory);
+				setx('pf.h', navigator.hardwareConcurrency);
+				setx('pf.tj', performance.memory.jsHeapSizeLimit);
+				setx('pf.j', performance.memory.totalJSHeapSize);
+				setx('pf.uj', performance.memory.usedJSHeapSize);
 			};
 
 
@@ -190,15 +234,15 @@
 					fail();
 				};
 			};
-			// if (window.DeviceMotionEvent && DeviceMotionEvent.requestPermission && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) {
-			// 	if (typeof DeviceMotionEvent.requestPermission === 'function' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-			// 		document.getElementById('permbtn').addEventListener('click', rp);
-			// 	} else {
+			if (window.DeviceMotionEvent && DeviceMotionEvent.requestPermission && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) {
+				if (typeof DeviceMotionEvent.requestPermission === 'function' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+					document.getElementById('permbtn').addEventListener('click', rp);
+				} else {
 					succ();
-			// 	};
-			// } else {
-			// 	document.getElementsByTagName('main')[0].textContent = 'ごめんwwそもそもこのスマホ対応してないわ。ってかこれ本当にスマホ？';
-			// };
+				};
+			} else {
+				document.getElementsByTagName('main')[0].textContent = 'ごめんwwそもそもこのスマホ対応してないわ。ってかこれ本当にスマホ？';
+			};
 		</script>
 	</body>
 </html>
