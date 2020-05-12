@@ -39,8 +39,8 @@
 				const circs = v => Object.entries(v).forEach(v => document.getElementsByTagName('circle')[i].setAttribute(...v));
 				const d2r = i => ang[i] * Math.PI / 180;
 				let x = 0, y = 0, z = 0;
-				y = (oy	* Math.cos(d2r(2))) - (oz	* Math.sin(d2r(2)));
-				z = (oy	* Math.sin(d2r(2))) + (oz	* Math.cos(d2r(2)));
+				y = (oy	* Math.cos(d2r(1))) - (oz	* Math.sin(d2r(1)));
+				z = (oy	* Math.sin(d2r(1))) + (oz	* Math.cos(d2r(1)));
 				// x = (x	* Math.cos(d2r(1))) - (y	* Math.sin(d2r(1)));
 				// y = (x	* Math.sin(d2r(1))) + (y	* Math.cos(d2r(1)));
 				// x = (x	* Math.cos(d2r(0))) - (z	* Math.sin(d2r(0)));
