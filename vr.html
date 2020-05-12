@@ -39,14 +39,14 @@
 				const circs = v => Object.entries(v).forEach(v => document.getElementsByTagName('circle')[i].setAttribute(...v));
 				const d2r = i => ang[i] * Math.PI / -180;
 				let tx, ty, tz, x = ox, y = oy, z = oz;
-				tx = x;
-				tz = z;
-				x = (tx	* Math.cos(d2r(0))) - (tz	* Math.sin(d2r(0)));
-				z = (tx	* Math.sin(d2r(0))) + (tz	* Math.cos(d2r(0)));
 				tz = z;
 				ty = y;
 				z = (tz	* Math.cos(d2r(1))) - (ty	* Math.sin(d2r(1)));
 				y = (tz	* Math.sin(d2r(1))) + (ty	* Math.cos(d2r(1)));
+				tx = x;
+				tz = z;
+				x = (tx	* Math.cos(d2r(0))) - (tz	* Math.sin(d2r(0)));
+				z = (tx	* Math.sin(d2r(0))) + (tz	* Math.cos(d2r(0)));
 				// tx = x;
 				// ty = y;
 				// x = (tx	* Math.cos(d2r(2))) - (ty	* Math.sin(d2r(2)));
