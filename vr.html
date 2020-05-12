@@ -36,7 +36,7 @@
 			const setXY = (glx, gly, x, y, i) => {
 				const circ = document.getElementsByTagName('circle')[i];
 				document.getElementsByTagName('text')[0].textContent = glx;
-				document.getElementsByTagName('text')[0].textContent = x - glx;
+				document.getElementsByTagName('text')[1].textContent = x - glx;
 				circ.setAttribute('opacity', Math.abs() < 180 ? 100 : 0);
 				circ.setAttribute('cx', Math.sin(glx * Math.PI / x) - 0.05);
 				circ.setAttribute('cy', Math.sin(gly * Math.PI / y) - 0.05);
@@ -61,7 +61,7 @@
 							e.gamma,
 							e.beta,
 							[
-								[180, 180]
+								[0, 0]
 								// [-180, 180]
 							]
 						);
