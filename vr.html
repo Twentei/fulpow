@@ -32,9 +32,9 @@
 			'use strict';
 			const setXY = (glx, gly, x, y, i) => {
 				const circ = document.getElementsByTagName('circle')[i];
-				circ.setAttribute('opacity', Math.abs(glx - x) < 180 ? 100 : 0);
-				circ.setAttribute('cx', Math.sin((x - glx) * (Math.PI / 180)) - 0.05);
-				circ.setAttribute('cy', Math.sin((y - gly) * (Math.PI / 180)) - 0.05);
+				circ.setAttribute('opacity', Math.abs(glx - x) < 180 && Math.abs(gly - y) < 180 ? 100 : 0);
+				circ.setAttribute('cx', Math.sin((glx - x) * (Math.PI / 180)) - 0.05);
+				circ.setAttribute('cy', Math.sin((gly - y) * (Math.PI / 180)) - 0.05);
 			};
 			const setXYs = (glx, gly, ary) => {
 				ary.forEach((v, i) => setXY(glx, gly, ...v, i))
