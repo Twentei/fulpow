@@ -25,9 +25,7 @@
 		<main>
 			<button id="permbtn">あなたのスマホのフルパワーを今すぐ確認！</button>
 			<svg id="output" viewBox="-0.5 -0.5 1 1">
-				<text x="-0.4" y="-0.4" font-family="Verdana" font-size="0.1" fill="white">
-					0
-				</text>
+				<text x="-0.4" y="-0.4" font-size="0.1" fill="white"></text>
 				<circle cx="0" cy="0" r="0.1" fill="white"></circle>
 				<!-- <circle cx="0" cy="0" r="0.1" fill="white"></circle> -->
 			</svg>
@@ -37,6 +35,7 @@
 			const setXY = (glx, gly, x, y, i) => {
 				const circ = document.getElementsByTagName('circle')[i];
 				document.getElementsByTagName('text')[0].textContent = glx * Math.PI / x;
+				circ.setAttribute('opacity', Math.sign(glx) == Math.sign(x) ? 100 : 0);
 				circ.setAttribute('cx', Math.sin(glx * Math.PI / x) - 0.05);
 				circ.setAttribute('cy', Math.sin(gly * Math.PI / y) - 0.05);
 			};
