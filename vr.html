@@ -31,14 +31,14 @@
 		</main>
 		<script>
 			'use strict';
-			const setXY = (i, x, y) => {
-				document.getElementsByTagName('circle')[i]
-				.setAttribute('opacity', Math.sign(x) == Math.sign(e.gamma) && Math.sign(y) == Math.sign(e.beta) ? 100 : 0);
-				.setAttribute('cx', Math.sin(e.gamma * Math.PI / x) - 0.05)
-				.setAttribute('cy', Math.sin(e.beta * Math.PI / y) - 0.05)
+			const setXY = (glx, gly, x, y, i) => {
+				const circ = document.getElementsByTagName('circle')[i];
+				circ.setAttribute('opacity', Math.sign(x) == Math.sign(glx) && Math.sign(y) == Math.sign(gly) ? 100 : 0)
+				circ.setAttribute('cx', Math.sin(glx * Math.PI / x) - 0.05)
+				circ.setAttribute('cy', Math.sin(gly * Math.PI / y) - 0.05);
 			};
-			const setXYs = ary => {
-				ary.forEach((v, i) => setXYs(i, ...v))
+			const setXYs = (glx, gly, ary) => {
+				ary.forEach((v, i) => setXY(glx, gly, ...v, i))
 			};
 			const fail = () => document.getElementById('permbtn').textContent = 'ごめん無理だった…。';
 			const succ = () => {
@@ -53,10 +53,14 @@
 				window.addEventListener('deviceorientation', e => {
 					const circ = document.getElementsByTagName('circle');
 					if (e) {
-						setXYs([
-							[180, 180],
-							[-180, 180]
-						]);
+						setXYs(
+							e.gamma,
+							e.beta,
+							[
+								[180, 180],
+								[-180, 180]
+							]
+						);
 					};
 				});
 				navigator.geolocation.watchPosition(e => {
