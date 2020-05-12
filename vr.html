@@ -39,16 +39,16 @@
 				const circs = v => Object.entries(v).forEach(v => document.getElementsByTagName('circle')[i].setAttribute(...v));
 				const d2r = i => ang[i] * Math.PI / -180;
 				let x = 0, y = 0, z = 0, tx = ox, ty = oy, tz = oz;
-				x = (tx	* Math.cos(d2r(2))) - (ty	* Math.sin(d2r(2)));
-				y = (tx	* Math.sin(d2r(2))) + (ty	* Math.cos(d2r(2)));
+				//x = (tx	* Math.cos(d2r(2))) - (ty	* Math.sin(d2r(2)));
+				//y = (tx	* Math.sin(d2r(2))) + (ty	* Math.cos(d2r(2)));
 				tx = x;
 				ty = y;
 				y = (ty	* Math.cos(d2r(1))) - (tz	* Math.sin(d2r(1)));
 				z = (ty	* Math.sin(d2r(1))) + (tz	* Math.cos(d2r(1)));
 				ty = y;
 				tz = z;
-				x = (tx	* Math.cos(d2r(0))) - (tz	* Math.sin(d2r(0)));
-				z = (tx	* Math.sin(d2r(0))) + (tz	* Math.cos(d2r(0)));
+				//x = (tx	* Math.cos(d2r(0))) - (tz	* Math.sin(d2r(0)));
+				//z = (tx	* Math.sin(d2r(0))) + (tz	* Math.cos(d2r(0)));
 				circs({
 					// 'opacity': Math.abs(gl[0] - md[0]) < 45 && Math.abs(gl[1] - md[1]) < 90 ? 100 : 0,
 					// 'opacity': z < 0 ? 100 : 0,
