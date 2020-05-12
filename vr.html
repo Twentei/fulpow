@@ -37,7 +37,7 @@
 			'use strict';
 			const setXYZ = (ang, [ox, oy, oz], i) => {
 				const circs = v => Object.entries(v).forEach(v => document.getElementsByTagName('circle')[i].setAttribute(...v));
-				const d2r = i => -ang[i] * Math.PI / -180;
+				const d2r = i => ang[i] * Math.PI / -180;
 				let tx, ty, tz, x = ox, y = oy, z = oz;
 				ty = y;
 				tz = z;
