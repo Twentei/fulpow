@@ -35,14 +35,16 @@
 		</main>
 		<script>
 			'use strict';
-			const setXY = (glx, gly, x, y, i) => {
+			const setXYZ = (gl, md, i) => {
 				const circ = document.getElementsByTagName('circle')[i];
-				circ.setAttribute('opacity', Math.abs(glx - x) < 45 && Math.abs(gly - y) < 90 ? 100 : 0);
-				circ.setAttribute('cx', Math.sin((glx - x) * (Math.PI / 180)) - 0.05);
-				circ.setAttribute('cy', Math.sin((gly - y) * (Math.PI / 180)) - 0.05);
+				const X = Math.sin((gl[0] - md[0]) * Math.PI);
+				const Y = Math.sin((gl[1] - md[1]) * Math.PI);
+				circ.setAttribute('opacity', Math.abs(gl[0] - md[0]) < 45 && Math.abs(gl[1] - md[1]) < 90 ? 100 : 0);
+				circ.setAttribute('cx', X - 0.05);
+				circ.setAttribute('cy', Y - 0.05);
 			};
-			const setXYs = (glx, gly, ary) => {
-				ary.forEach((v, i) => setXY(glx, gly, ...v, i))
+			const setXYZs = (gl, ar) => {
+				ar.forEach((v, i) => setXYZ(gl, v, i))
 			};
 			const fail = () => document.getElementById('permbtn').textContent = 'ごめん無理だった…。';
 			const succ = () => {
@@ -57,12 +59,14 @@
 				window.addEventListener('deviceorientation', e => {
 					const circ = document.getElementsByTagName('circle');
 					if (e) {
-						setXYs(
-							e.gamma,
-							e.beta,
+						setXYZs(
 							[
-								[0, 0],
-								[0, 180]//,
+								e.gamma,
+								e.beta
+							],
+							[
+								[0, -1],
+								[0, 1]//,
 								// [0, 90],
 								// [90, 90],
 								// [180, 90],
@@ -97,15 +101,15 @@
 					fail();
 				};
 			};
-			if (window.DeviceMotionEvent && DeviceMotionEvent.requestPermission && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) {
-				if (typeof DeviceMotionEvent.requestPermission === 'function' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-					document.getElementById('permbtn').addEventListener('click', rp);
-				} else {
+			// if (window.DeviceMotionEvent && DeviceMotionEvent.requestPermission && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) {
+			// 	if (typeof DeviceMotionEvent.requestPermission === 'function' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+			// 		document.getElementById('permbtn').addEventListener('click', rp);
+			// 	} else {
 					succ();
-				};
-			} else {
-				document.getElementsByTagName('main')[0].textContent = 'ごめんwwそもそもこのスマホ対応してないわ。ってかこれ本当にスマホ？';
-			};
+			// 	};
+			// } else {
+			// 	document.getElementsByTagName('main')[0].textContent = 'ごめんwwそもそもこのスマホ対応してないわ。ってかこれ本当にスマホ？';
+			// };
 		</script>
 	</body>
 </html>
