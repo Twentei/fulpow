@@ -37,10 +37,11 @@
 			'use strict';
 			const setXYZ = (gl, md, i) => {
 				const circ = document.getElementsByTagName('circle')[i];
-				const X = Math.sin((gl[0] - md[0]) * Math.PI);
-				const Y = Math.sin((gl[1] - md[1]) * Math.PI);
+				const X = Math.sin((gl[0] - md[0]) * Math.PI / 180);
+				const Y = Math.sin((gl[1] - md[1]) * Math.PI / 180);
+				const Y = Math.sin((gl[2] - md[2]) * Math.PI / 180);
 				circ.setAttribute('opacity', Math.abs(gl[0] - md[0]) < 45 && Math.abs(gl[1] - md[1]) < 90 ? 100 : 0);
-				circ.setAttribute('cx', X - 0.05);
+				circ.setAttribute('cx', (X * Math.cos(gl[2])) - (Z * Math.cos(gl[2])) - 0.05);
 				circ.setAttribute('cy', Y - 0.05);
 			};
 			const setXYZs = (gl, ar) => {
@@ -62,11 +63,12 @@
 						setXYZs(
 							[
 								e.gamma,
-								e.beta
+								e.beta,
+								e.alpha
 							],
 							[
-								[0, -1],
-								[0, 1]//,
+								[0, -1, 0],
+								[0, 1, 0]//,
 								// [0, 90],
 								// [90, 90],
 								// [180, 90],
