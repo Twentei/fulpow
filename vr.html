@@ -41,10 +41,10 @@
 				let x = 0, y = 0, z = 0, tx = ox, ty = oy, tz = oz;
 				x = (tx	* Math.cos(d2r(2))) - (ty	* Math.sin(d2r(2)));
 				y = (tx	* Math.sin(d2r(2))) + (ty	* Math.cos(d2r(2)));
-				tx = x, ty = y, tz = z;
+				tx = x; ty = y; tz = z;
 				y = (ty	* Math.cos(d2r(1))) - (tz	* Math.sin(d2r(1)));
 				z = (ty	* Math.sin(d2r(1))) + (tz	* Math.cos(d2r(1)));
-				tx = x, ty = y, tz = z;
+				tx = x; ty = y; tz = z;
 				x = (tx	* Math.cos(d2r(0))) - (tz	* Math.sin(d2r(0)));
 				z = (tx	* Math.sin(d2r(0))) + (tz	* Math.cos(d2r(0)));
 				circs({
