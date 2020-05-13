@@ -39,7 +39,7 @@
 				let [x, y, z] = obj;
 				const getXYZ = i => i == 0 ? x : (i == 1 ? y : (i == 2 ? z : 0));
 				const circs = v => Object.entries(v).forEach(v => document.getElementsByTagName('circle')[i].setAttribute(...v));
-				const sinc = (f, i0, i1) => f((ang[i0] + (i0 == 1 ? 90 : 0)) * Math.PI / -180) * i1;
+				const sinc = (f, r, i) => f(r * Math.PI / -180) * i;
 				const calc = (i0, i1, i2) => [
 					sinc(Math.cos, i0, getXYZ(i1)) - sinc(Math.sin, i0, getXYZ(i2)),
 					sinc(Math.sin, i0, getXYZ(i1)) + sinc(Math.cos, i0, getXYZ(i2))
@@ -48,13 +48,14 @@
 				// tz = z;
 				// y = (tz	* d2r(1, Math.cos)) - (ty	* d2r(1, Math.sin));
 				// z = (tz	* d2r(1, Math.sin)) + (ty	* d2r(1, Math.cos));
-				[y, z] = calc(1, 1, 2);
+				[y, z] = calc(ang[1], 1, 2);
 				// [x, z] = calc(0, 0, 2);
 				// [x, y] = calc(2, 0, 1);
 				// tx = x;
 				// ty = y;
 				// x = (tx	* Math.cos(d2r(2))) - (ty	* Math.sin(d2r(2)));
 				// y = (tx	* Math.sin(d2r(2))) + (ty	* Math.cos(d2r(2)));
+				[y, z] = calc(-90, 1, 2);
 				circs({
 					// 'opacity': Math.abs(gl[0] - md[0]) < 45 && Math.abs(gl[1] - md[1]) < 90 ? 100 : 0,
 					// 'opacity': z < 0 ? 100 : 0,
