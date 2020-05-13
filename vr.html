@@ -41,12 +41,10 @@
 			'use strict';
 			const setXYZ = (ang, obj, i) => {
 				let [x, y, z] = obj;
-				const getXYZ = i => i == 0 ? x : (i == 1 ? y : (i == 2 ? z : 0));
 				const circs = v => Object.entries(v).forEach(v => document.getElementsByTagName('circle')[i].setAttribute(...v));
-				const sinc = (f, r, i) => Math.sin(r * Math.PI / -180) * i;
 				const calc = (i0, i1, i2) => [
-					sinc(i0, getXYZ(i1)),
-					sinc(i0, getXYZ(i2))
+					Math.cos(i0 * Math.PI / -180) * i1 == 0 ? x : (i1 == 1 ? y : (i1 == 2 ? z : 0)),
+					Math.sin(i0 * Math.PI / -180) * i1 == 0 ? x : (i1 == 1 ? y : (i1 == 2 ? z : 0)),
 				];
 				// ty = y;
 				// tz = z;
