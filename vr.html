@@ -35,18 +35,19 @@
 		</main>
 		<script>
 			'use strict';
-			const setXYZ = (ang, [ox, oy, oz], i) => {
+			const setXYZ = (ang, obj, i) => {
 				const circs = v => Object.entries(v).forEach(v => document.getElementsByTagName('circle')[i].setAttribute(...v));
-				const d2r = (i, f) => f(ang[i] * Math.PI / 180);
-				let tx, ty, tz, x = ox, y = oy, z = oz;
-				ty = y;
-				tz = z;
-				y = (tz	* d2r(1, Math.cos)) - (ty	* d2r(1, Math.sin));
-				// z = (ty	* d2r(1, Math.sin)) + (tz	* d2r(1, Math.sin));
-				// tx = x;
+				const sinc = (i, f, s) => s * f(ang[i] * Math.PI / 180);
+				const calc = (a, b, c) => [
+					sinc(a, Math.cos, b) - sinc(a, Math.sin, c),
+					sinc(a, Math.sin, b) + sinc(a, Math.cos, c)
+				];
+				// let tx, ty, tz, x = ox, y = oy, z = oz;
+				// ty = y;
 				// tz = z;
-				// x = (tx	* Math.cos(d2r(0))) - (tz	* Math.sin(d2r(0)));
-				// z = (tx	* Math.sin(d2r(0))) + (tz	* Math.cos(d2r(0)));
+				// y = (tz	* d2r(1, Math.cos)) - (ty	* d2r(1, Math.sin));
+				// z = (tz	* d2r(1, Math.sin)) + (ty	* d2r(1, Math.cos));
+				[x, z] = calc(0, z, x);
 				// tx = x;
 				// ty = y;
 				// x = (tx	* Math.cos(d2r(2))) - (ty	* Math.sin(d2r(2)));
