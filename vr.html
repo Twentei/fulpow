@@ -52,8 +52,8 @@
 				// tz = z;
 				// y = (tz	* d2r(1, Math.cos)) - (ty	* d2r(1, Math.sin));
 				// z = (tz	* d2r(1, Math.sin)) + (ty	* d2r(1, Math.cos));
-				[x, z] = calc(-ang[0] * Math.sign(ang[2]), 0, 2);
-				[x, y] = calc(-ang[2], 0, 1);
+				[x, z] = calc(-ang[0], 0, 2);
+				// [x, y] = calc(-ang[2], 0, 1);
 				// [y, z] = calc(-90 - ang[1], 1, 2);
 				for (let i = 0; i < 3; i++) {
 					document.getElementsByTagName('text')[i].textContent = ang[i];
