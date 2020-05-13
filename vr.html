@@ -39,14 +39,15 @@
 				const circs = v => Object.entries(v).forEach(v => document.getElementsByTagName('circle')[i].setAttribute(...v));
 				const sinc = (f, i0, i1) => f(ang[i0] * Math.PI / 180) * i1;
 				const calc = (i0, i1, i2) => [
-					sinc(i0, Math.cos, obj[i1]) - sinc(i0, Math.sin, obj[i2]),
-					sinc(i0, Math.sin, obj[i1]) + sinc(i0, Math.cos, obj[i2])
+					sinc(Math.cos, i0, obj[i1]) - sinc(Math.sin, i0, obj[i2]),
+					sinc(Math.sin, i0, obj[i1]) + sinc(Math.cos, i0, obj[i2])
 				];
 				// ty = y;
 				// tz = z;
 				// y = (tz	* d2r(1, Math.cos)) - (ty	* d2r(1, Math.sin));
 				// z = (tz	* d2r(1, Math.sin)) + (ty	* d2r(1, Math.cos));
-				[x, z] = calc(0, 2, 0);
+				[y, z] = calc(1, 2, 1);
+				// [x, z] = calc(0, 2, 0);
 				// tx = x;
 				// ty = y;
 				// x = (tx	* Math.cos(d2r(2))) - (ty	* Math.sin(d2r(2)));
