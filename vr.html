@@ -42,12 +42,12 @@
 					sinc(a, Math.cos, b) - sinc(a, Math.sin, c),
 					sinc(a, Math.sin, b) + sinc(a, Math.cos, c)
 				];
-				let [x, y, z] = obj;
+				let [, x, y, z] = obj;
 				// ty = y;
 				// tz = z;
 				// y = (tz	* d2r(1, Math.cos)) - (ty	* d2r(1, Math.sin));
 				// z = (tz	* d2r(1, Math.sin)) + (ty	* d2r(1, Math.cos));
-				[x, z] = calc(0, z, x);
+				// [x, z] = calc(0, z, x);
 				// tx = x;
 				// ty = y;
 				// x = (tx	* Math.cos(d2r(2))) - (ty	* Math.sin(d2r(2)));
@@ -76,11 +76,7 @@
 					const circ = document.getElementsByTagName('circle');
 					if (e) {
 						setXYZs(
-							[
-								e.alpha,
-								e.beta,
-								e.gamma
-							],
+							e,
 							[
 								[0, -1, 0],
 								// [0, 0, 1]//,
