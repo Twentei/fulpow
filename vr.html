@@ -37,17 +37,16 @@
 			'use strict';
 			const setXYZ = (ang, obj, i) => {
 				const circs = v => Object.entries(v).forEach(v => document.getElementsByTagName('circle')[i].setAttribute(...v));
-				const sinc = (i, f, s) => s * f(ang[i] * Math.PI / 180);
-				const calc = (a, b, c) => [
-					sinc(a, Math.cos, b) - sinc(a, Math.sin, c),
-					sinc(a, Math.sin, b) + sinc(a, Math.cos, c)
+				const sinc = (f, i0, i1) => f(ang[i0] * Math.PI / 180) * i1;
+				const calc = (i0, i1, i2) => [
+					sinc(i0, Math.cos, obj[i1]) - sinc(i0, Math.sin, obj[i2]),
+					sinc(i0, Math.sin, obj[i1]) + sinc(i0, Math.cos, obj[i2])
 				];
-				let [, x, y, z] = obj;
 				// ty = y;
 				// tz = z;
 				// y = (tz	* d2r(1, Math.cos)) - (ty	* d2r(1, Math.sin));
 				// z = (tz	* d2r(1, Math.sin)) + (ty	* d2r(1, Math.cos));
-				[x, z] = calc(0, z, x);
+				[x, z] = calc(0, 2, 0);
 				// tx = x;
 				// ty = y;
 				// x = (tx	* Math.cos(d2r(2))) - (ty	* Math.sin(d2r(2)));
@@ -76,7 +75,11 @@
 					const circ = document.getElementsByTagName('circle');
 					if (e) {
 						setXYZs(
-							e,
+							[
+								e.alpha,
+								e.beta,
+								e.gamma
+							],
 							[
 								[0, -1, 0],
 								// [0, 0, 1]//,
