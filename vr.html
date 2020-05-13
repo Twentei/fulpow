@@ -53,8 +53,8 @@
 				// y = (tz	* d2r(1, Math.cos)) - (ty	* d2r(1, Math.sin));
 				// z = (tz	* d2r(1, Math.sin)) + (ty	* d2r(1, Math.cos));
 				// [y, z] = calc(-90 - ang[1], 1, 2);
-				[x, z] = calc(ang[0], 0, 2);
-				// [x, y] = calc(-ang[2], 0, 1);
+				// [x, z] = calc(ang[0], 0, 2);
+				[x, y] = calc(-ang[2], 0, 1);
 				document.getElementsByTagName('text')[0].textContent = x;
 				document.getElementsByTagName('text')[1].textContent = y;
 				document.getElementsByTagName('text')[2].textContent = z;
