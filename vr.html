@@ -41,8 +41,8 @@
 				let tx, ty, tz, x = ox, y = oy, z = oz;
 				ty = y;
 				tz = z;
-				y = (ty	* d2r(1, Math.sin)) - (tz	* d2r(1, Math.cos));
-				z = (ty	* d2r(1, Math.sin)) + (tz	* d2r(1, Math.sin));
+				y = (tz	* d2r(1, Math.cos)) - (ty	* d2r(1, Math.sin));
+				// z = (ty	* d2r(1, Math.sin)) + (tz	* d2r(1, Math.sin));
 				// tx = x;
 				// tz = z;
 				// x = (tx	* Math.cos(d2r(0))) - (tz	* Math.sin(d2r(0)));
