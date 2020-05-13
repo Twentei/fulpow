@@ -50,12 +50,12 @@
 				// z = (tz	* d2r(1, Math.sin)) + (ty	* d2r(1, Math.cos));
 				// [x, y] = calc(ang[2], 0, 1);
 				[y, z] = calc(-ang[1], 1, 2);
+				[y, z] = calc(90, 1, 2);
 				[x, z] = calc(-ang[0], 0, 2);
 				// tx = x;
 				// ty = y;
 				// x = (tx	* Math.cos(d2r(2))) - (ty	* Math.sin(d2r(2)));
 				// y = (tx	* Math.sin(d2r(2))) + (ty	* Math.cos(d2r(2)));
-				[y, z] = calc(90, 1, 2);
 				circs({
 					// 'opacity': Math.abs(gl[0] - md[0]) < 45 && Math.abs(gl[1] - md[1]) < 90 ? 100 : 0,
 					'cx': x,
