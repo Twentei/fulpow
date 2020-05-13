@@ -41,8 +41,8 @@
 				let tx, ty, tz, x = ox, y = oy, z = oz;
 				tz = z;
 				ty = y;
-				z = (tz	* Math.cos(d2r(1))) - (ty	* Math.sin(d2r(1)));
-				y = (tz	* Math.sin(d2r(1))) + (ty	* Math.cos(d2r(1)));
+				z = (tz	* Math.cos(d2r(1) + 90)) - (ty	* Math.sin(d2r(1) + 90));
+				y = (tz	* Math.sin(d2r(1) + 90)) + (ty	* Math.cos(d2r(1) + 90));
 				// tx = x;
 				// tz = z;
 				// x = (tx	* Math.cos(d2r(0))) - (tz	* Math.sin(d2r(0)));
@@ -81,8 +81,8 @@
 								e.gamma
 							],
 							[
-								[0, 0, 1],
-								[0, 0, 1]//,
+								[0, -1, 0],
+								// [0, 0, 1]//,
 								// [0, 90],
 								// [90, 90],
 								// [180, 90],
