@@ -19,7 +19,7 @@
 				-o-display: none;
 				display: none;
 			}
-			#output > * {fill: white}
+			#output > text {fill: white}
 		</style>
 	</head>
 	<body>
@@ -53,10 +53,10 @@
 				// y = (tz	* d2r(1, Math.cos)) - (ty	* d2r(1, Math.sin));
 				// z = (tz	* d2r(1, Math.sin)) + (ty	* d2r(1, Math.cos));
 				// [x, y] = calc(ang[2], 0, 1);
+				[y, z] = calc(-ang[1], 1, 2);
 				document.getElementsByTagName('text')[0].textContent = x;
 				document.getElementsByTagName('text')[1].textContent = y;
 				document.getElementsByTagName('text')[2].textContent = z;
-				[y, z] = calc(-ang[1], 1, 2);
 				[x, z] = calc(-ang[0], 0, 2);
 				// tx = x;
 				// ty = y;
@@ -93,7 +93,7 @@
 								e.gamma
 							],
 							[
-								[0, 0, -1],
+								[0, -1, 0],
 								[0, 0, -1]//,
 								// [0, 90],
 								// [90, 90],
