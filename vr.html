@@ -39,7 +39,11 @@
 				let [x, y, z] = obj;
 				const getXYZ = i => i == 0 ? x : (i == 1 ? y : (i == 2 ? z : 0));
 				const circs = v => Object.entries(v).forEach(v => document.getElementsByTagName('circle')[i].setAttribute(...v));
+<<<<<<< HEAD
 				const sinc = (f, r, i) => f(r * Math.PI / -180) * i;
+=======
+				const sinc = (f, i0, i1) => f((ang[i0] - (i0 == 1 ? 90 : 0)) * Math.PI / -180) * i1;
+>>>>>>> 6272d7d157cf4d7a0b22e1d9c35044ea57e9e99d
 				const calc = (i0, i1, i2) => [
 					sinc(Math.cos, i0, getXYZ(i1)) - sinc(Math.sin, i0, getXYZ(i2)),
 					sinc(Math.sin, i0, getXYZ(i1)) + sinc(Math.cos, i0, getXYZ(i2))
@@ -48,8 +52,13 @@
 				// tz = z;
 				// y = (tz	* d2r(1, Math.cos)) - (ty	* d2r(1, Math.sin));
 				// z = (tz	* d2r(1, Math.sin)) + (ty	* d2r(1, Math.cos));
+<<<<<<< HEAD
 				[y, z] = calc(ang[1], 1, 2);
 				// [x, z] = calc(0, 0, 2);
+=======
+				[y, z] = calc(1, 1, 2);
+				[x, z] = calc(0, 0, 2);
+>>>>>>> 6272d7d157cf4d7a0b22e1d9c35044ea57e9e99d
 				// [x, y] = calc(2, 0, 1);
 				// tx = x;
 				// ty = y;
