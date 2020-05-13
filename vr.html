@@ -26,9 +26,9 @@
 		<main>
 			<button id="permbtn">あなたのスマホのフルパワーを今すぐ確認！</button>
 			<svg id="output" viewBox="-0.5 -0.5 1 1">
-				<text x="-0.4" y="-0.4" font-size="0.4"></text>
-				<text x="-0.4" y="-0.3" font-size="0.4"></text>
-				<text x="-0.4" y="-0.2" font-size="0.4"></text>
+				<text x="-0.4" y="-0.4" font-size="0.05"></text>
+				<text x="-0.4" y="-0.3" font-size="0.05"></text>
+				<text x="-0.4" y="-0.2" font-size="0.05"></text>
 				<circle cx="0" cy="0" r="0.1" fill="red"></circle>
 				<circle cx="0" cy="0" r="0.1" fill="cyan"></circle><!-- 
 				<circle cx="0" cy="0" r="0.1" fill="yellow"></circle>
@@ -54,10 +54,10 @@
 				// z = (tz	* d2r(1, Math.sin)) + (ty	* d2r(1, Math.cos));
 				// [x, y] = calc(ang[2], 0, 1);
 				[y, z] = calc(-ang[1], 1, 2);
-				[x, z] = calc(-ang[0], 0, 2);
 				document.getElementsByTagName('text')[0].textContent = x;
 				document.getElementsByTagName('text')[1].textContent = y;
 				document.getElementsByTagName('text')[2].textContent = z;
+				[x, y] = calc(-ang[0], 0, 1);
 				// tx = x;
 				// ty = y;
 				// x = (tx	* Math.cos(d2r(2))) - (ty	* Math.sin(d2r(2)));
