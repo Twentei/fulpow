@@ -48,8 +48,8 @@
 				// tz = z;
 				// y = (tz	* d2r(1, Math.cos)) - (ty	* d2r(1, Math.sin));
 				// z = (tz	* d2r(1, Math.sin)) + (ty	* d2r(1, Math.cos));
-				[x, y] = calc(ang[2], 0, 1);
-				[y, z] = calc(ang[1], 1, 2);
+				// [x, y] = calc(ang[2], 0, 1);
+				[y, z] = calc(-ang[1], 1, 2);
 				// [x, z] = calc(0, 0, 2);
 				// tx = x;
 				// ty = y;
