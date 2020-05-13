@@ -53,7 +53,7 @@
 				// y = (tz	* d2r(1, Math.cos)) - (ty	* d2r(1, Math.sin));
 				// z = (tz	* d2r(1, Math.sin)) + (ty	* d2r(1, Math.cos));
 				// [x, y] = calc(ang[2], 0, 1);
-				[y, z] = calc(-ang[1], 1, 2);
+				[y, z] = calc(-ang[1] - 90, 1, 2);
 				document.getElementsByTagName('text')[0].textContent = x;
 				document.getElementsByTagName('text')[1].textContent = y;
 				document.getElementsByTagName('text')[2].textContent = z;
@@ -62,7 +62,6 @@
 				// ty = y;
 				// x = (tx	* Math.cos(d2r(2))) - (ty	* Math.sin(d2r(2)));
 				// y = (tx	* Math.sin(d2r(2))) + (ty	* Math.cos(d2r(2)));
-				[y, z] = calc(-90, 1, 2);
 				circs({
 					// 'opacity': Math.abs(gl[0] - md[0]) < 45 && Math.abs(gl[1] - md[1]) < 90 ? 100 : 0,
 					'cx': x,
