@@ -55,9 +55,9 @@
 				// [x, y] = calc(-ang[2], 0, 1);
 				[x, z] = calc(ang[0], 0, 2);
 				// [y, z] = calc(-90 - ang[1], 1, 2);
-				document.getElementsByTagName('text')[0].textContent = x;
-				document.getElementsByTagName('text')[1].textContent = y;
-				document.getElementsByTagName('text')[2].textContent = z;
+				for (let i = 0; i < 3; i++) {
+					document.getElementsByTagName('text')[i].textContent = ang[i];
+				};
 				// [y, z] = calc(-90, 1, 2);
 				// tx = x;
 				// ty = y;
