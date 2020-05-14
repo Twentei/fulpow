@@ -38,12 +38,6 @@
 		</main>
 		<script>
 			'use strict';
-			const setXYZ = [x, y] => {
-				Object.entries({
-					'cx': x - 0.05,
-					'cy': y - 0.05,
-				}).forEach(v => document.getElementsByTagName('circle')[i].setAttribute(...v));
-			};
 			const fail = () => document.getElementById('permbtn').textContent = 'ごめん無理だった…。';
 			const succ = () => {
 				const out = document.getElementById('output');
