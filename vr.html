@@ -49,8 +49,8 @@
 					sinc(Math.sin, i0, getXYZ(i1)) + sinc(Math.cos, i0, getXYZ(i2))
 				];
 				const calc2 = (i0, i1, i2, i3) => [
-					(sinc(Math.cos, i0, getXYZ(i2)) - sinc(Math.sin, i0, getXYZ(i3))) * sinc(Math.cos, i1, getXYZ(i2)),
-					(sinc(Math.sin, i0, getXYZ(i2)) + sinc(Math.cos, i0, getXYZ(i3))) * sinc(Math.sin, i1, getXYZ(i2))
+					(sinc(Math.cos, i0, getXYZ(i1)) - sinc(Math.sin, i0, getXYZ(i2))) * Math.cos(i3 + 90),
+					(sinc(Math.sin, i0, getXYZ(i1)) + sinc(Math.cos, i0, getXYZ(i2))) * Math.cos(i3 + 90)
 				];
 				// ty = y;
 				// tz = z;
