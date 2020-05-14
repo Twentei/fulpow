@@ -63,7 +63,8 @@
 				// z = sinc(Math.sin, -ang[0], getXYZ(0)) + sinc(Math.cos, -ang[1], getXYZ(2))
 				// [y, z] = calc(ang[1] - 90, 1, 2);
 				[y, z] = calc(-90, 1, 2);
-				[z, x] = calc2(ang[0], 2, 0, ang[1]);
+				[x, y] = calc(ang[2], 0, 1);
+				// [z, x] = calc2(ang[0], 2, 0, ang[1]);
 				// [x, z] = [
 				// 	sinc(Math.sin, ang[0], getXYZ(0)),
 				// 	sinc(Math.sin, ang[0], getXYZ(2))
@@ -71,7 +72,6 @@
 				// [z, x] = calc(-ang[0], 2, 0);
 
 				// calc2(-ang[0], -ang[1], 0, 2);
-				// [x, y] = calc(-ang[2], 0, 1);
 				// tx = x;
 				// ty = y;
 				// x = (tx	* Math.cos(d2r(2))) - (ty	* Math.sin(d2r(2)));
