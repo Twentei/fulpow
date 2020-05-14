@@ -44,17 +44,17 @@
 				const getXYZ = i => i == 0 ? x : (i == 1 ? y : (i == 2 ? z : 0));
 				const circs = v => Object.entries(v).forEach(v => document.getElementsByTagName('circle')[i].setAttribute(...v));
 				const sinc = (f, r, i) => f(r * Math.PI / -180) * i;
-				const calc = (i0, i1, i2) => [
-					sinc(Math.cos, i0, getXYZ(i1)) - sinc(Math.sin, i0, getXYZ(i2)),
-					sinc(Math.sin, i0, getXYZ(i1)) + sinc(Math.cos, i0, getXYZ(i2))
+				const calc = (i0, i1, i2, i3) => [
+					sinc(Math.cos, i0, getXYZ(i2)) - sinc(Math.sin, i1, getXYZ(i3)),
+					sinc(Math.sin, i0, getXYZ(i2)) + sinc(Math.cos, i1, getXYZ(i3))
 				];
 				// ty = y;
 				// tz = z;
 				// y = (tz	* d2r(1, Math.cos)) - (ty	* d2r(1, Math.sin));
 				// z = (tz	* d2r(1, Math.sin)) + (ty	* d2r(1, Math.cos));
-				x = sinc(Math.cos, -ang[0], getXYZ(0)) - sinc(Math.sin, -ang[1], getXYZ(2)),
-				z = sinc(Math.sin, -ang[0], getXYZ(0)) + sinc(Math.cos, -ang[1], getXYZ(2))
-				// [x, z] = calc(-ang[0], 0, 2);
+				// x = sinc(Math.cos, -ang[0], getXYZ(0)) - sinc(Math.sin, -ang[1], getXYZ(2)),
+				// z = sinc(Math.sin, -ang[0], getXYZ(0)) + sinc(Math.cos, -ang[1], getXYZ(2))
+				[x, z] = calc(-ang[0], -ang[1], 0, 2);
 				// [x, y] = calc(-ang[2], 0, 1);
 				// [y, z] = calc(-90 - ang[1], 1, 2);
 				for (let i = 0; i < 3; i++) {
