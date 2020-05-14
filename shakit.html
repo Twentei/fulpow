@@ -41,8 +41,8 @@
 				window.addEventListener('devicemotion', e => {
 					if (e) {
 						const line = document.getElementsByTagName('line')[0];
-						line.setAttribute('x2', 0.05 * e.acceleration.x / MAX);
-						line.setAttribute('y2', 0.05 * e.acceleration.y / MAX);
+						line.setAttribute('x2', 0.05 * e.acceleration.x);
+						line.setAttribute('y2', 0.05 * e.acceleration.y);
 					};
 				});
 				window.addEventListener('deviceorientation', e => {
@@ -73,15 +73,15 @@
 					fail();
 				};
 			};
-			if (window.DeviceMotionEvent && DeviceMotionEvent.requestPermission && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) {
-				if (typeof DeviceMotionEvent.requestPermission === 'function' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-					document.getElementById('permbtn').addEventListener('click', rp);
-				} else {
+			// if (window.DeviceMotionEvent && DeviceMotionEvent.requestPermission && window.DeviceOrientationEvent && DeviceOrientationEvent.requestPermission) {
+			// 	if (typeof DeviceMotionEvent.requestPermission === 'function' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+			// 		document.getElementById('permbtn').addEventListener('click', rp);
+			// 	} else {
 					succ();
-				};
-			} else {
-				document.getElementsByTagName('main')[0].textContent = 'ごめんwwそもそもこのスマホ対応してないわ。ってかこれ本当にスマホ？';
-			};
+			// 	};
+			// } else {
+			// 	document.getElementsByTagName('main')[0].textContent = 'ごめんwwそもそもこのスマホ対応してないわ。ってかこれ本当にスマホ？';
+			// };
 		</script>
 	</body>
 </html>
