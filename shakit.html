@@ -40,9 +40,9 @@
 				document.getElementsByTagName('body')[0].style.backgroundColor = 'black';
 				window.addEventListener('devicemotion', e => {
 					if (e) {
-						const ELE = document.getElementsByTagName('line')[0];
-						v.setAttribute('x2', 0.05 * e.acceleration.x / MAX);
-						v.setAttribute('y2', 0.05 * e.acceleration.y / MAX);
+						const line = document.getElementsByTagName('line')[0];
+						line.setAttribute('x2', 0.05 * e.acceleration.x / MAX);
+						line.setAttribute('y2', 0.05 * e.acceleration.y / MAX);
 					};
 				});
 				window.addEventListener('deviceorientation', e => {
