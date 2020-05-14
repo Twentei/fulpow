@@ -19,21 +19,13 @@
 				-o-display: none;
 				display: none;
 			}
-			#output > text {fill: white}
 		</style>
 	</head>
 	<body>
 		<main>
 			<button id="permbtn">あなたのスマホのフルパワーを今すぐ確認！</button>
 			<svg id="output" viewBox="-0.5 -0.5 1 1">
-				<circle cx="0" cy="0" r="0.1" fill="white"></circle>
-				<circle cx="0" cy="0" r="0.1" fill="white"></circle>
-				<circle cx="0" cy="0" r="0.1" fill="white"></circle>
-				<circle cx="0" cy="0" r="0.1" fill="white"></circle>
-				<circle cx="0" cy="0" r="0.1" fill="white"></circle>
-				<circle cx="0" cy="0" r="0.1" fill="white"></circle>
-				<circle cx="0" cy="0" r="0.1" fill="white"></circle>
-				<circle cx="0" cy="0" r="0.1" fill="white"></circle>
+				<line x1="0" y1="0" x2="0" y2="0" stroke="white"></line>
 			</svg>
 		</main>
 		<script>
@@ -41,22 +33,16 @@
 			const fail = () => document.getElementById('permbtn').textContent = 'ごめん無理だった…。';
 			const succ = () => {
 				const out = document.getElementById('output');
-				const data = [];
 				out.style.display = 'block';
 				out.style.width = screen.width;
 				out.style.height = screen.height;
 				document.getElementById('permbtn').style.display = 'none';
 				document.getElementsByTagName('body')[0].style.backgroundColor = 'black';
 				window.addEventListener('devicemotion', e => {
-					const circ = document.getElementsByTagName('circle');
 					if (e) {
-						const ELE = document.querySelectorAll('circle');
-						const MAX = ELE.length;
-						ELE.forEach((v, i) => {
-							data[i] = [v.getAttribute('cx'), v.getAttribute('cy')];
-							v.setAttribute('cx', data[i][0] * 0.8 + (0.05 * (e.acceleration.x * i / MAX)));
-							v.setAttribute('cy', data[i][1] * 0.8 + (0.05 * (e.acceleration.y * i / MAX)));
-						});
+						const ELE = document.getElementsByTagName('line')[0];
+						v.setAttribute('x2', 0.05 * e.acceleration.x / MAX);
+						v.setAttribute('y2', 0.05 * e.acceleration.y / MAX);
 					};
 				});
 				window.addEventListener('deviceorientation', e => {
