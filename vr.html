@@ -52,7 +52,7 @@
 					(sinc(Math.cos, i0, getXYZ(i1)) - sinc(Math.sin, i0, getXYZ(i2))) * sinc(Math.cos, i3, 1),
 					(sinc(Math.sin, i0, getXYZ(i1)) + sinc(Math.cos, i0, getXYZ(i2))) * sinc(Math.cos, i3, 1)
 				];
-				if (c <= 0) b *= -1;
+				if (b <= -90 && c <= 0) b -= 90;
 				// b *= sinc(Math.cos, c + 90, 1);
 				// for (let i = 0; i < 3; i++) {
 				//	document.getElementsByTagName('text')[i].textContent = ang[i];
