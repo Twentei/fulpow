@@ -41,6 +41,7 @@
 			const fail = () => document.getElementById('permbtn').textContent = 'ごめん無理だった…。';
 			const succ = () => {
 				const out = document.getElementById('output');
+				const data = [];
 				out.style.display = 'block';
 				out.style.width = screen.width;
 				out.style.height = screen.height;
@@ -52,9 +53,9 @@
 						const ELE = document.querySelectorAll('circle');
 						const MAX = ELE.length;
 						ELE.forEach((v, i) => {
-							v.setAttribute('cx', 0.05 * (e.acceleration.x * i / MAX - 1));
-							v.setAttribute('cy', 0.05 * (e.acceleration.y * i / MAX - 1));
-							v.setAttribute('opacity', 1 / MAX);
+							data[i] = [v.getAttribute('cx'), v.getAttribute('cy')];
+							v.setAttribute('cx', data[i][0] * 0.8 + (0.05 * (e.acceleration.x * i / MAX)));
+							v.setAttribute('cy', data[i][1] * 0.8 + (0.05 * (e.acceleration.y * i / MAX)));
 						});
 					};
 				});
