@@ -40,7 +40,7 @@
 		<script>
 			'use strict';
 			const setXYZ = (ang, obj, i) => {
-				let [x, y, z] = obj;
+				let [a, b, c] = ang, [x, y, z] = obj;
 				const getXYZ = i => i == 0 ? x : (i == 1 ? y : (i == 2 ? z : 0));
 				const circs = v => Object.entries(v).forEach(v => document.getElementsByTagName('circle')[i].setAttribute(...v));
 				const sinc = (f, r, i) => f(r * Math.PI / 180) * i;
@@ -49,15 +49,20 @@
 					sinc(Math.sin, i0, getXYZ(i1)) + sinc(Math.cos, i0, getXYZ(i2))
 				];
 				const calc2 = (i0, i1, i2, i3) => [
-					(sinc(Math.cos, i0, getXYZ(i1)) - sinc(Math.sin, i0, getXYZ(i2))) * sinc(Math.cos, i3 + 90, 1),
-					(sinc(Math.sin, i0, getXYZ(i1)) + sinc(Math.cos, i0, getXYZ(i2))) * sinc(Math.cos, i3 + 90, 1)
+					(sinc(Math.cos, i0, getXYZ(i1)) - sinc(Math.sin, i0, getXYZ(i2))) * sinc(Math.cos, i3, 1),
+					(sinc(Math.sin, i0, getXYZ(i1)) + sinc(Math.cos, i0, getXYZ(i2))) * sinc(Math.cos, i3, 1)
 				];
-				for (let i = 0; i < 3; i++) {
-					document.getElementsByTagName('text')[i].textContent = ang[i];
-				};
-				// [x, y] = calc(-ang[2], 0, 1);
-				[y, z] = calc(-90, 1, 2);
-				[z, x] = calc(ang[0], 2, 0);
+				b = b * sinc(Math.cos, c, 1);
+				// for (let i = 0; i < 3; i++) {
+				//	document.getElementsByTagName('text')[i].textContent = ang[i];
+				// };
+				document.getElementsByTagName('text')[0].textContent = a;
+				document.getElementsByTagName('text')[1].textContent = b;
+				document.getElementsByTagName('text')[2].textContent = c;
+
+				[x, y] = calc2(-ang[2], 0, 1, ang[3]);
+				// [z, x] = calc(ang[0], 2, 0);
+				// [y, z] = calc(-90, 1, 2);
 
 				// ty = y;
 				// tz = z;
