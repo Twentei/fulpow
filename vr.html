@@ -55,12 +55,12 @@
 				for (let i = 0; i < 3; i++) {
 					document.getElementsByTagName('text')[i].textContent = ang[i];
 				};
-				[y, z] = calc(ang[1] - 90, 1, 2);
+				[y, z] = calc(-90, 1, 2);
 				[x, y] = calc(-ang[2], 0, 1);
+				[y, z] = calc(ang[1], 1, 2);
 
 				// ty = y;
 				// tz = z;
-				// [y, z] = calc(-90, 1, 2);
 				// y = (tz	* d2r(1, Math.cos)) - (ty	* d2r(1, Math.sin));
 				// z = (tz	* d2r(1, Math.sin)) + (ty	* d2r(1, Math.cos));
 				// x = sinc(Math.cos, -ang[0], getXYZ(0)) - sinc(Math.sin, -ang[1], getXYZ(2)),
