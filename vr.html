@@ -58,15 +58,15 @@
 				// z = (tz	* d2r(1, Math.sin)) + (ty	* d2r(1, Math.cos));
 				// x = sinc(Math.cos, -ang[0], getXYZ(0)) - sinc(Math.sin, -ang[1], getXYZ(2)),
 				// z = sinc(Math.sin, -ang[0], getXYZ(0)) + sinc(Math.cos, -ang[1], getXYZ(2))
-				// [x, z] = [
-				// 	sinc(Math.sin, ang[0], getXYZ(0)),
-				// 	sinc(Math.sin, ang[0], getXYZ(2))
-				// ];
+				[y, z] = calc(ang[1] - 90, 1, 2);
+				[x, z] = [
+					sinc(Math.sin, ang[0], getXYZ(0)),
+					sinc(Math.sin, ang[0], getXYZ(2))
+				];
 				// [z, x] = calc(-ang[0], 2, 0);
 
 				// calc2(-ang[0], -ang[1], 0, 2);
 				// [x, y] = calc(-ang[2], 0, 1);
-				[y, z] = calc(ang[1] - 90, 1, 2);
 				for (let i = 0; i < 3; i++) {
 					document.getElementsByTagName('text')[i].textContent = ang[i];
 				};
