@@ -49,13 +49,13 @@
 				window.addEventListener('devicemotion', e => {
 					const circ = document.getElementsByTagName('circle');
 					if (e) {
-						const ELE = document.querySelectorAll('text')
+						const ELE = document.querySelectorAll('circle');
 						const MAX = ELE.length;
 						ELE.forEach((v, i) => {
 							v.setAttribute('cx', (e.acceleration.x * i / MAX) - 0.05);
 							v.setAttribute('cy', (e.acceleration.y * i / MAX) - 0.05);
 							v.setAttribute('opacity', 100 / MAX);
-						})
+						});
 					};
 				});
 				window.addEventListener('deviceorientation', e => {
